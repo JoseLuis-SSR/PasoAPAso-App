@@ -2,27 +2,59 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permisos estrictamente necesarios (HU-02, HU-04, HU-05, HU-06) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PasoAPaso">
+        android:theme="@style/Theme.PasoAPaso"
+        tools:targetApi="31">
+
+        <!-- Actividad principal (sin LAUNCHER directo para permitir cambiar nombre/ícono) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.PasoAPaso"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.PasoAPaso" />
+
+        <!-- Alias 1: Identidad normal por defecto -->
+        <activity-alias
+            android:name=".AliasPasoAPaso"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="Paso a Paso"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
+
+        <!-- Alias 2: Modo Anónimo ("Mis Notas") -->
+        <activity-alias
+            android:name=".AliasMisNotas"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_mis_notas"
+            android:label="Mis Notas"
+            android:roundIcon="@drawable/ic_mis_notas"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
     </application>
 
 </manifest>
