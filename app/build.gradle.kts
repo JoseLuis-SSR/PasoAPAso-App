@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.upiicsa.pasoapaso"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.upiicsa.pasoapaso"
@@ -51,6 +51,7 @@ secrets {
 }
 
 dependencies {
+    implementation(libs.material)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
