@@ -31,6 +31,7 @@ class MainActivity : FragmentActivity() {
     private lateinit var preferenciasSeguras: PreferenciasSeguras
     private lateinit var databaseKeyProvider: DatabaseKeyProvider
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,6 +43,7 @@ class MainActivity : FragmentActivity() {
 
         preferenciasSeguras = PreferenciasSeguras(this)
         databaseKeyProvider = DatabaseKeyProvider(preferenciasSeguras)
+        com.upiicsa.pasoapaso.diario.NotificacionDiscretaWorker.programar(this)
 
         enableEdgeToEdge()
         setContent {
